@@ -1,9 +1,9 @@
-import { TransactionRepository } from './transaction-repository';
-import { Clock } from './clock';
-import { Console } from './console';
-import { Transaction } from './transaction';
+import TransactionRepository from './transaction-repository';
+import Clock from './clock';
+import Console from './console';
+import Transaction from './transaction';
 
-export class AccountService {
+class AccountService {
   private STATEMENT_HEADER: string = 'DATE | AMOUNT | BALANCE';
 
   private transactionRepository: TransactionRepository;
@@ -73,3 +73,5 @@ export class AccountService {
     this.console.printLine(line);
   }
 }
+
+export default AccountService;

@@ -1,4 +1,4 @@
-export class Transaction {
+class Transaction {
   private date: Date;
   private amount: number;
 
@@ -15,3 +15,5 @@ export class Transaction {
     return this.amount;
   }
 }
+
+export default Transaction;

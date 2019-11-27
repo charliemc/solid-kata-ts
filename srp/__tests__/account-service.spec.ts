@@ -1,8 +1,8 @@
-import { Transaction } from '../src/transaction';
-import { AccountService } from '../src/account-service';
-import { Clock } from '../src/clock';
-import { Console } from '../src/console';
-import { TransactionRepository } from '../src/transaction-repository';
+import Transaction from '../src/transaction';
+import AccountService from '../src/account-service';
+import Clock from '../src/clock';
+import Console from '../src/console';
+import TransactionRepository from '../src/transaction-repository';
 
 describe('account service', () => {
   const POSITIVE_AMOUNT: number = 100;

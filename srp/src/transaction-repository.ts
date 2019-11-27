@@ -1,6 +1,8 @@
-import { Transaction } from './transaction';
+import Transaction from './transaction';
 
-export interface TransactionRepository {
+interface TransactionRepository {
   add(transaction: Transaction): void;
   all(): Transaction[];
 }
+
+export default TransactionRepository;
