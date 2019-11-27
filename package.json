@@ -1,7 +1,7 @@
 {
   "name": "solid-kata-ts",
   "version": "1.0.0",
-  "description": "Kata for practicing SOLID principles",
+  "description": "Kata for practicing SOLID principles in TypeScript",
   "main": "",
   "scripts": {
     "test": "jest",
