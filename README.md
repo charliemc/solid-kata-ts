@@ -15,3 +15,5 @@ This repository contains examples that violate the SOLID principles:
 - **Dependency Inversion Principle**: Depend on abstractions, not on concretions. High-level modules should not depend on low-level modules. Both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
 
 The objective is modify each of the examples in order to not violate the corresponding SOLID principle.
+
+_This kata was [originally written in Java](https://github.com/ivanbadia/solid-kata) by [Iván Badía](ivanbadia) and has been translated to TypeScript._
