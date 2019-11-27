@@ -16,4 +16,4 @@ This repository contains examples that violate the SOLID principles:
 
 The objective is modify each of the examples in order to not violate the corresponding SOLID principle.
 
-_This kata was [originally written in Java](https://github.com/ivanbadia/solid-kata) by [Iván Badía](ivanbadia) and has been translated to TypeScript._
+_This kata was [originally written in Java](https://github.com/ivanbadia/solid-kata) by [Iván Badía](https://github.com/ivanbadia) and has been translated to TypeScript._
