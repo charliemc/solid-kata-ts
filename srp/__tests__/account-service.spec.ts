@@ -17,18 +17,19 @@ describe('account service', () => {
   let clock: Clock;
   let transactionRepository: TransactionRepository;
   let console: Console;
-
   let accountService: AccountService;
 
   beforeEach(() => {
-    clock = { today: jest.fn() };
-    transactionRepository = { add: jest.fn(), all: jest.fn() };
-    console = { printLine: jest.fn() };
-  });
+    clock = { today: (): Date => TODAY };
 
-  beforeEach(() => {
+    transactionRepository = {
+      add: jest.fn(),
+      all: (): Transaction[] => TRANSACTIONS
+    };
+
+    console = { printLine: jest.fn() };
+
     accountService = new AccountService(transactionRepository, clock, console);
-    jest.spyOn(clock, 'today').mockReturnValue(TODAY);
   });
 
   it('should deposit ammount into the account', () => {
@@ -48,9 +49,6 @@ describe('account service', () => {
   });
 
   it('should print statement', () => {
-    jest.spyOn(transactionRepository, 'all').mockReturnValue(TRANSACTIONS);
-    jest.spyOn(console, 'printLine');
-
     accountService.printStatement();
 
     expect(console.printLine).toHaveBeenCalledWith('DATE | AMOUNT | BALANCE');
