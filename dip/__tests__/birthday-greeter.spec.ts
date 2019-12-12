@@ -9,42 +9,35 @@ describe('birthday greeter', () => {
   const CURRENT_MONTH: number = 7;
   const CURRENT_DAY_OF_MONTH: number = 9;
   const TODAY: MonthDay = new MonthDay(CURRENT_MONTH, CURRENT_DAY_OF_MONTH);
+  const employee: Employee = EmployeeBuilder.anEmployee().build();
 
   let employeeRepository: EmployeeRepository;
   let clock: Clock;
-
+  let fakeConsole: jest.SpyInstance;
   let birthdayGreeter: BirthdayGreeter;
 
-  let consoleLogMock: jest.SpyInstance;
-
   beforeEach(() => {
-    employeeRepository = { findEmployeesBornOn: jest.fn() };
-    clock = { monthDay: jest.fn() };
-
-    birthdayGreeter = new BirthdayGreeter(employeeRepository, clock);
-  });
-
-  beforeEach(() => {
-    consoleLogMock = jest.spyOn(console, 'log').mockImplementation();
-  });
-
-  afterAll(() => {
-    consoleLogMock.mockRestore();
-  });
-
-  it('should send greeting email to employee', () => {
-    spyOn(clock, 'monthDay').and.returnValue(TODAY);
-
-    const employee: Employee = EmployeeBuilder.anEmployee().build();
-    spyOn(employeeRepository, 'findEmployeesBornOn').and.callFake(
-      (monthDay: MonthDay) => {
+    employeeRepository = {
+      findEmployeesBornOn: (monthDay: MonthDay): Employee[] => {
         const isToday =
           monthDay.getMonth() === CURRENT_MONTH &&
           monthDay.getDay() === CURRENT_DAY_OF_MONTH;
         return isToday ? [employee] : [];
       }
-    );
+    };
 
+    clock = { monthDay: (): MonthDay => TODAY };
+
+    fakeConsole = jest.spyOn(console, 'log').mockImplementation();
+
+    birthdayGreeter = new BirthdayGreeter(employeeRepository, clock);
+  });
+
+  afterAll(() => {
+    fakeConsole.mockRestore();
+  });
+
+  it('should send greeting email to employee', () => {
     birthdayGreeter.sendGreetings();
 
     expect(console.log).toHaveBeenCalledWith(
