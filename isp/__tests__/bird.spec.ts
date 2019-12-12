@@ -2,10 +2,14 @@ import Bird from '../src/bird';
 
 describe('bird', () => {
   const bird: Bird = new Bird();
-  let consoleLogMock: jest.SpyInstance;
+  let fakeConsoleLog: jest.SpyInstance;
 
   beforeEach(() => {
-    consoleLogMock = jest.spyOn(console, 'log').mockImplementation();
+    fakeConsoleLog = jest.spyOn(console, 'log').mockImplementation();
+  });
+
+  afterAll(() => {
+    fakeConsoleLog.mockRestore();
   });
 
   it('should run', () => {

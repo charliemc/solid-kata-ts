@@ -2,14 +2,14 @@ import Dog from '../src/dog';
 
 describe('dog', () => {
   const dog: Dog = new Dog();
-  let consoleLogMock: jest.SpyInstance;
+  let fakeConsoleLog: jest.SpyInstance;
 
   beforeEach(() => {
-    consoleLogMock = jest.spyOn(console, 'log').mockImplementation();
+    fakeConsoleLog = jest.spyOn(console, 'log').mockImplementation();
   });
 
   afterAll(() => {
-    consoleLogMock.mockRestore();
+    fakeConsoleLog.mockRestore();
   });
 
   it('should run', () => {
