@@ -13,7 +13,7 @@ describe('birthday greeter', () => {
 
   let employeeRepository: EmployeeRepository;
   let clock: Clock;
-  let fakeConsole: jest.SpyInstance;
+  let fakeConsoleLog: jest.SpyInstance;
   let birthdayGreeter: BirthdayGreeter;
 
   beforeEach(() => {
@@ -28,13 +28,13 @@ describe('birthday greeter', () => {
 
     clock = { monthDay: (): MonthDay => TODAY };
 
-    fakeConsole = jest.spyOn(console, 'log').mockImplementation();
+    fakeConsoleLog = jest.spyOn(console, 'log').mockImplementation();
 
     birthdayGreeter = new BirthdayGreeter(employeeRepository, clock);
   });
 
   afterAll(() => {
-    fakeConsole.mockRestore();
+    fakeConsoleLog.mockRestore();
   });
 
   it('should send greeting email to employee', () => {
